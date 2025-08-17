@@ -5,13 +5,16 @@
   <title>Gateway Redirect</title>
 </head>
 <body>
-  <p>Redirecting...</p>
+  <p>Redirecting... <span id="Direct-link"></span></p>
+  
   <script>
     fetch("config.json")
       .then(r => r.json())
       .then(data => {
         if (data.redirect) {
-          window.location.href = data.redirect;
+          let link = document.getElementById('Direct-link');
+          link.innerText = data.redirect;   // hiển thị link
+          window.location.href = data.redirect; // redirect
         } else {
           document.body.innerHTML = "<p>No redirect URL configured</p>";
         }
